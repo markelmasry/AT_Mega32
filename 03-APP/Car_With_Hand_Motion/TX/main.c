@@ -71,7 +71,7 @@ while(1){
 				USART_vidSendByte('0'+z);
 			}
 			
-/*********** For Sending Forward direction by sending value between 148-248 *************/ 			
+/*********** For Sending Backward direction by sending value between 148-248 *************/ 			
 			else if ( x<500)
 			{
 				z=z*100;
