@@ -15,7 +15,7 @@
 #include "LM35_interface.h"
 #include "UART_interface.h"
 
-
+//*********functions for driver l293d****************//
 void forward(){
 	DIO_vidWritePin(GPIOC,PIN3,HIGH);
 	DIO_vidWritePin(GPIOC,PIN5,LOW);
@@ -79,7 +79,7 @@ int main(void)
     {
 		 x= USART_u8RecieveByte();
 		 _delay_ms(70);
-		
+//****************forward motion range**************//
 		if ( (x>48)&& (x<148) && (x!='r') && (x!='l') && (x!='s') ){
 			LCD_vidClearScreen4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE);
 			LCD_voidDisplayString4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE,"forward");
@@ -90,12 +90,13 @@ int main(void)
 			LCD_voidDisplayString4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE,"Speed :   ");
 			LCD_vidDisplayNumber4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE,y);
 			
-
+//***************dc speed control********************//
 		DC_vidStart(GPIOB, PIN5, y);
+//*******************dc motion**********************//
 			forward();
-		
-		
 		}
+		
+//****************backward motion range**************//
 		else if ((x>148) && (x<248) && (x!='r') && (x!='l') && (x!='s')){
 			LCD_vidClearScreen4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE);
 			LCD_voidDisplayString4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE,"backward");
@@ -110,6 +111,7 @@ int main(void)
 			backward();
 			
 		}
+//****************right motion range**************//
 		else if (x=='r'){
 			LCD_vidClearScreen4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE);
 			LCD_voidDisplayString4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE,"right");
@@ -118,6 +120,7 @@ int main(void)
 			
 			
 		}
+//****************left motion range**************//
 		else if (x=='l'){
 			LCD_vidClearScreen4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE);
 			LCD_voidDisplayString4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE,"left");
@@ -125,6 +128,7 @@ int main(void)
 			left();
 			
 		}
+//****************stop motion range**************//
 		
 			else if (x=='s'){
 				LCD_vidClearScreen4bit(GPIOA,GPIOB,PIN1,GPIOB,PIN3,HIGH_NIBBLE);
