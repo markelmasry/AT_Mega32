@@ -1,0 +1,10 @@
+#ifndef FLX_CONFIG_H
+#define FLX_CONFIG_H
+
+/* Options : 5000 for 5v Vref 
+			 2560 for 2.56v Vref
+*/
+#define INT_VREF  2560
+
+
+#endif
